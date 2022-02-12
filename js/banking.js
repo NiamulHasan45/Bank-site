@@ -16,7 +16,21 @@ function updateTotalField(desireID, dataEnter){
     const sumDeposit = dataEnter + totalElementEnter;
     totalElement.innerText = sumDeposit;
 }
+function updateTotalAmount(amountEnter,check){
+    const totalBudget = document.getElementById('total-budget');
+    const totalBudgetText = totalBudget.innerText;
+    const totalBudgetEnter = parseFloat(totalBudgetText);
+    if(check==true){
+        const sumTotal = amountEnter + totalBudgetEnter;
+        totalBudget.innerText = sumTotal;
+    }
+    else{
+        const sumTotal = totalBudgetEnter- amountEnter;
+        totalBudget.innerText = sumTotal;
+    }
 
+    
+}
 
 document.getElementById('deposit-button').addEventListener('click', function(){
     // const depositAmount = document.getElementById('deposit-amount');
@@ -27,7 +41,14 @@ document.getElementById('deposit-button').addEventListener('click', function(){
     const depositEnter = getInputValue("deposit-amount");
 
 
+    if(depositEnter>0){
+        updateTotalField('total-deposit', depositEnter);
+        updateTotalAmount(depositEnter,true);
 
+    }
+    else {
+        alert('you entered wrong thing')
+    }
     //Total deposit
     // const totalDeposit =document.getElementById('total-deposit');
     // const totalDepositText = totalDeposit.innerText;
@@ -37,15 +58,17 @@ document.getElementById('deposit-button').addEventListener('click', function(){
     // const sumDeposit = depositEnter + totalDepositEnter;
     // totalDeposit.innerText = sumDeposit;
 
-    updateTotalField('total-deposit', depositEnter);
+    //updateTotalField('total-deposit', depositEnter);
 
     //Add in total amount
+    //updateTotalAmount(depositEnter);
 
-    const totalBudget = document.getElementById('total-budget');
-    const totalBudgetText = totalBudget.innerText;
-    const totalBudgetEnter = parseFloat(totalBudgetText);
-    const sumTotal = depositEnter + totalBudgetEnter;
-    totalBudget.innerText = sumTotal;
+
+    // const totalBudget = document.getElementById('total-budget');
+    // const totalBudgetText = totalBudget.innerText;
+    // const totalBudgetEnter = parseFloat(totalBudgetText);
+    // const sumTotal = depositEnter + totalBudgetEnter;
+    // totalBudget.innerText = sumTotal;
      
 
 })
@@ -56,7 +79,14 @@ document.getElementById('withdraw-button').addEventListener('click', function(){
     // const withdrawAmount = document.getElementById('withdraw-amount');
     // const withdrawEnterText = withdrawAmount.value;
     // const withdrawEnter = parseFloat(withdrawEnterText);
-    updateTotalField('total-withdraw', withdrawEnter);
+    if(withdrawEnter>0){
+        updateTotalField('total-withdraw', withdrawEnter);
+        updateTotalAmount(withdrawEnter, false);
+    }
+    else{
+        alert('Please enter right thing')
+    }
+    // updateTotalField('total-withdraw', withdrawEnter);
 
     //Total withdraw
     // const totalWithdraw =document.getElementById('total-withdraw');
@@ -68,10 +98,12 @@ document.getElementById('withdraw-button').addEventListener('click', function(){
     // totalWithdraw.innerText = sumWithdraw;
 
     //Add in total amount
-    const totalBudget = document.getElementById('total-budget');
-    const totalBudgetText = totalBudget.innerText;
-    const totalBudgetEnter = parseFloat(totalBudgetText);
-    const sumTotal =    totalBudgetEnter-withdrawEnter;
-    totalBudget.innerText = sumTotal;   
+    // updateTotalAmount(withdrawEnter);
+
+    // const totalBudget = document.getElementById('total-budget');
+    // const totalBudgetText = totalBudget.innerText;
+    // const totalBudgetEnter = parseFloat(totalBudgetText);
+    // const sumTotal =    totalBudgetEnter-withdrawEnter;
+    // totalBudget.innerText = sumTotal;   
 
 })
